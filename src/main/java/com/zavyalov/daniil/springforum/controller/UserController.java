@@ -1,5 +1,6 @@
 package com.zavyalov.daniil.springforum.controller;
 
+import com.zavyalov.daniil.springforum.exception.UserNotFoundException;
 import com.zavyalov.daniil.springforum.form.UserForm;
 import com.zavyalov.daniil.springforum.service.ForumUserDetailsService;
 import com.zavyalov.daniil.springforum.view.UserView;
@@ -22,5 +23,10 @@ public class UserController {
     @PostMapping()
     public UserView createUser(UserForm user) {
         return userDetailsService.createUser(user);
+    }
+
+    @GetMapping("/{id}")
+    public UserView getUserById(@PathVariable("id") Integer id) throws UserNotFoundException {
+        return userDetailsService.getUserById(id).orElseThrow(UserNotFoundException::new);
     }
 }

@@ -11,6 +11,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ForumUserDetailsService implements UserDetailsService {
     private final UserPostgresRepository repository;
@@ -35,5 +37,10 @@ public class ForumUserDetailsService implements UserDetailsService {
         UserTableEntity entity = repository.save(userManager.formToNewEntity(form));
 
         return userManager.entityToView(entity);
+    }
+
+    public Optional<UserView> getUserById(Integer id) {
+        Optional<UserTableEntity> res = repository.findById(id);
+        return res.map(entity -> userManager.entityToView(entity));
     }
 }
