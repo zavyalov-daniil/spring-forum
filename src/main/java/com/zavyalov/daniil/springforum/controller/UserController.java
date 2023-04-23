@@ -26,7 +26,14 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public UserView getUserById(@PathVariable("id") Integer id) throws UserNotFoundException {
         return userDetailsService.getUserById(id).orElseThrow(UserNotFoundException::new);
+    }
+
+    @DeleteMapping()
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteAllPosts() {
+        userDetailsService.deleteAll();
     }
 }

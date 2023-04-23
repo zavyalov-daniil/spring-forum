@@ -43,4 +43,8 @@ public class ForumUserDetailsService implements UserDetailsService {
         Optional<UserTableEntity> res = repository.findById(id);
         return res.map(entity -> userManager.entityToView(entity));
     }
+
+    public void deleteAll() {
+        repository.deleteAll();
+    }
 }
