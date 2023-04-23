@@ -1,7 +1,7 @@
 package com.zavyalov.daniil.springforum.service;
 
 import com.zavyalov.daniil.springforum.converter.PostManager;
-import com.zavyalov.daniil.springforum.entity.PostEntity;
+import com.zavyalov.daniil.springforum.entity.PostTableEntity;
 import com.zavyalov.daniil.springforum.form.PostForm;
 import com.zavyalov.daniil.springforum.repository.PostRepository;
 import com.zavyalov.daniil.springforum.view.PostView;
@@ -26,10 +26,10 @@ public class PostService {
     }
 
     public List<PostView> getAllPosts() {
-        List<PostEntity> entityList = postRepository.findAll();
+        List<PostTableEntity> entityList = postRepository.findAll();
         List<PostView> res = new ArrayList<>();
 
-        for (PostEntity post : entityList) {
+        for (PostTableEntity post : entityList) {
             res.add(postManager.entityToView(post));
         }
 
@@ -37,19 +37,19 @@ public class PostService {
     }
 
     public Optional<PostView> findPostById(Long postId) {
-        Optional<PostEntity> res = postRepository.findById(postId);
+        Optional<PostTableEntity> res = postRepository.findById(postId);
         return res.map(entity -> postManager.entityToView(entity));
     }
 
     public PostView save(PostForm postForm) {
-        PostEntity entity = postManager.formToNewEntity(postForm);
+        PostTableEntity entity = postManager.formToNewEntity(postForm);
         return postManager.entityToView(postRepository.save(entity));
     }
 
     public Optional<PostView> updatePost(Long id, PostForm form) {
-        Optional<PostEntity> entityOptional = postRepository.findById(id);
+        Optional<PostTableEntity> entityOptional = postRepository.findById(id);
         if(entityOptional.isPresent()) {
-            PostEntity entity = entityOptional.get();
+            PostTableEntity entity = entityOptional.get();
             entity = postManager.updateEntity(entity, form);
             return Optional.of(postManager.entityToView(postRepository.save(entity)));
         } else {
@@ -58,9 +58,9 @@ public class PostService {
     }
 
     public void clearById(Long id) {
-        Optional<PostEntity> entityOptional = postRepository.findById(id);
+        Optional<PostTableEntity> entityOptional = postRepository.findById(id);
         if (entityOptional.isPresent()) {
-            PostEntity entity = entityOptional.get();
+            PostTableEntity entity = entityOptional.get();
             postRepository.save(postManager.clearEntity(entity));
         }
     }

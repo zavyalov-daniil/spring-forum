@@ -14,7 +14,7 @@ import java.util.Set;
 @Node("Post")
 @Getter
 @NoArgsConstructor
-public class PostEntity {
+public class PostTableEntity {
     @Id
     @GeneratedValue
     private Long id;
@@ -33,10 +33,10 @@ public class PostEntity {
     Date creationTime;
 
     @Setter
-    @Relationship(type = "PARENT_OF", direction = Relationship.Direction.INCOMING)
-    private Set<PostEntity> parentPost;
+    @Relationship(type = "HAS_COMMENT", direction = Relationship.Direction.OUTGOING)
+    private Set<PostTableEntity> parentPost;
 
-    public PostEntity(String text, String title, Set<PostEntity> parentPost) {
+    public PostTableEntity(String text, String title, Set<PostTableEntity> parentPost) {
         this.title = title;
         this.text = text;
         this.parentPost = parentPost;
