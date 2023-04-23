@@ -1,5 +1,6 @@
 package com.zavyalov.daniil.springforum.converter;
 
+import com.zavyalov.daniil.springforum.entity.UserGraphEntity;
 import com.zavyalov.daniil.springforum.entity.UserTableEntity;
 import com.zavyalov.daniil.springforum.form.PostForm;
 import com.zavyalov.daniil.springforum.form.UserForm;
@@ -21,6 +22,9 @@ public class UserManager {
 
     public UserTableEntity formToNewEntity(UserForm form) {
         return new UserTableEntity(form.getUsername(), form.getEmail(), form.getPassword());
+    }
 
+    public UserGraphEntity tableEntityToNewGraphEntity(UserTableEntity tableEntity) {
+        return new UserGraphEntity(tableEntity.getId(), new HashSet<>(), new HashSet<>());
     }
 }
