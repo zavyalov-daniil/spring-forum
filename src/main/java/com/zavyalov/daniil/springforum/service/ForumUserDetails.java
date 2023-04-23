@@ -1,15 +1,15 @@
 package com.zavyalov.daniil.springforum.service;
 
-import com.zavyalov.daniil.springforum.entity.UserEntity;
+import com.zavyalov.daniil.springforum.entity.UserTableEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
 public class ForumUserDetails implements UserDetails {
-    private final UserEntity user;
+    private final UserTableEntity user;
 
-    public ForumUserDetails(UserEntity user) {
+    public ForumUserDetails(UserTableEntity user) {
         this.user = user;
     }
 

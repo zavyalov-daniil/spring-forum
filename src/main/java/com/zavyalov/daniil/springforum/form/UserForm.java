@@ -1,6 +1,5 @@
 package com.zavyalov.daniil.springforum.form;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,8 +9,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PostForm {
-    private String title;
-    private String text;
-    private Long parentPostId;
+public class UserForm {
+    private String username;
+    private String email;
+    private String password;
 }

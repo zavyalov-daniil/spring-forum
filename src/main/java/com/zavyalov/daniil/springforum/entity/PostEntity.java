@@ -14,7 +14,7 @@ import java.util.Set;
 @Node("Post")
 @Getter
 @NoArgsConstructor
-public class PostTableEntity {
+public class PostEntity {
     @Id
     @GeneratedValue
     private Long id;
@@ -34,9 +34,9 @@ public class PostTableEntity {
 
     @Setter
     @Relationship(type = "HAS_COMMENT", direction = Relationship.Direction.OUTGOING)
-    private Set<PostTableEntity> parentPost;
+    private Set<PostEntity> parentPost;
 
-    public PostTableEntity(String text, String title, Set<PostTableEntity> parentPost) {
+    public PostEntity(String text, String title, Set<PostEntity> parentPost) {
         this.title = title;
         this.text = text;
         this.parentPost = parentPost;
