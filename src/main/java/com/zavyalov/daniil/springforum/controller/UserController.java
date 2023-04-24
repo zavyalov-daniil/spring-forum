@@ -5,6 +5,7 @@ import com.zavyalov.daniil.springforum.form.UserForm;
 import com.zavyalov.daniil.springforum.service.user.ForumUserDetailsService;
 import com.zavyalov.daniil.springforum.view.UserView;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -25,7 +26,7 @@ public class UserController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping()
-    public UserView createUser(@RequestBody UserForm user) {
+    public UserView createUser(@RequestBody @Validated UserForm user) {
         return userDetailsService.createUser(user);
     }
 

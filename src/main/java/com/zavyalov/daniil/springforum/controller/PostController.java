@@ -5,6 +5,7 @@ import com.zavyalov.daniil.springforum.form.PostForm;
 import com.zavyalov.daniil.springforum.service.post.PostService;
 import com.zavyalov.daniil.springforum.view.PostView;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,13 +39,13 @@ public class PostController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public PostView createPost(@RequestBody PostForm postForm) {
+    public PostView createPost(@RequestBody @Validated PostForm postForm) {
         return service.savePost(postForm);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PatchMapping(path = "/{postId}")
-    public PostView updatePostText(@PathVariable Long postId, @RequestBody PostForm postForm) throws PostNotFoundException {
+    public PostView updatePostText(@PathVariable Long postId, @RequestBody @Validated PostForm postForm) throws PostNotFoundException {
         return service.updatePost(postId, postForm).orElseThrow(PostNotFoundException::new);
     }
 
