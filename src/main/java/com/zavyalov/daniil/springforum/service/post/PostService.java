@@ -1,9 +1,9 @@
-package com.zavyalov.daniil.springforum.service;
+package com.zavyalov.daniil.springforum.service.post;
 
-import com.zavyalov.daniil.springforum.converter.PostManager;
 import com.zavyalov.daniil.springforum.entity.PostEntity;
 import com.zavyalov.daniil.springforum.form.PostForm;
 import com.zavyalov.daniil.springforum.repository.PostRepository;
+import com.zavyalov.daniil.springforum.service.user.CurrentUserFacade;
 import com.zavyalov.daniil.springforum.view.PostView;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,5 @@
-package com.zavyalov.daniil.springforum.service;
+package com.zavyalov.daniil.springforum.service.user;
 
-import com.zavyalov.daniil.springforum.converter.UserManager;
 import com.zavyalov.daniil.springforum.entity.UserTableEntity;
 import com.zavyalov.daniil.springforum.form.UserForm;
 import com.zavyalov.daniil.springforum.repository.UserNeo4jRepository;
@@ -11,7 +10,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 

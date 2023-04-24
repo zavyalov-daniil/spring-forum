@@ -2,7 +2,7 @@ package com.zavyalov.daniil.springforum.controller;
 
 import com.zavyalov.daniil.springforum.exception.PostNotFoundException;
 import com.zavyalov.daniil.springforum.form.PostForm;
-import com.zavyalov.daniil.springforum.service.PostService;
+import com.zavyalov.daniil.springforum.service.post.PostService;
 import com.zavyalov.daniil.springforum.view.PostView;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

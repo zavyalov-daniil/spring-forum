@@ -1,4 +1,4 @@
-package com.zavyalov.daniil.springforum.service;
+package com.zavyalov.daniil.springforum.service.user;
 
 import com.zavyalov.daniil.springforum.entity.UserTableEntity;
 import org.springframework.security.core.GrantedAuthority;
