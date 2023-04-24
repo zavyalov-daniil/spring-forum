@@ -54,7 +54,8 @@ public class PostService {
     public PostView saveComment(PostForm postForm) {
         PostEntity entity = postManager.formToNewEntity(postForm);
         PostEntity savedEntity = postRepository.save(entity);
-        postRepository.mergeUserAndPost(currentUserFacade.getCurrentUser().getUserId(), savedEntity.getId());
+        postRepository.mergeUserAndComment(currentUserFacade.getCurrentUser().getUserId(), savedEntity.getId());
+        postRepository.mergePostAndComment(savedEntity.getId(), postForm.getParentPostId());
 
         return postManager.entityToView(savedEntity);
     }
@@ -80,10 +81,5 @@ public class PostService {
 
     public void deleteAll() {
         postRepository.deleteAll();
-    }
-
-    public void test(PostForm postForm) {
-        PostEntity entity = postManager.formToNewEntity(postForm);
-        /*return postManager.entityToView(*/postRepository.mergeUserAndPost(6, 2L);//);
     }
 }

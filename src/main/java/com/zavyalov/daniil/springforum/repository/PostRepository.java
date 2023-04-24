@@ -32,4 +32,13 @@ public interface PostRepository extends Neo4jRepository<PostEntity, Long> {
             "with u,p " +
             "MERGE (u)-[:LEFT_A_COMMENT]->(p) ")
     void mergeUserAndComment(@Param("userId") Integer userId, @Param("postId") Long postId);
+
+    @Query("MATCH(c:Post) " +
+            "where ID(c) = commentId " +
+            "with(c) " +
+            "match(p:Post) " +
+            "where ID(p) = $postId " +
+            "with c,p " +
+            "MERGE (p)-[:HAS_COMMENT]->(c) ")
+    void mergePostAndComment(@Param("commentId") Long commentId, @Param("postId") Long postId);
 }

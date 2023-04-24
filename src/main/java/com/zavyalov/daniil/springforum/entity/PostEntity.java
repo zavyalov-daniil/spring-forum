@@ -32,11 +32,11 @@ public class PostEntity {
 
     @Setter
     @Relationship(type = "HAS_COMMENT", direction = Relationship.Direction.OUTGOING)
-    private Set<PostEntity> parentPost;
+    private Set<PostEntity> comments;
 
-    public PostEntity(String text, String title, Set<PostEntity> parentPost) {
+    public PostEntity(String text, String title, Set<PostEntity> comments) {
         this.title = title;
         this.text = text;
-        this.parentPost = parentPost;
+        this.comments = comments;
     }
 }

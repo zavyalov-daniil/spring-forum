@@ -59,10 +59,4 @@ public class PostController {
     public void deleteAllPosts() {
         service.deleteAll();
     }
-
-    @PostMapping("/test")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void test(@RequestBody PostForm postForm) {
-        service.test(postForm);
-    }
 }

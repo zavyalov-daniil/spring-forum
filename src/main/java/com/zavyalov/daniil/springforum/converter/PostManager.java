@@ -19,17 +19,12 @@ public class PostManager {
     }
 
     public PostEntity formToNewEntity(PostForm form) {
-        HashSet<PostEntity> parent = new HashSet<>();
-        postRepository.findById(form.getParentPostId()).ifPresent(parent::add);
-        return new PostEntity(form.getText(), form.getTitle(), parent);
+        return new PostEntity(form.getText(), form.getTitle(), new HashSet<>());
     }
 
     public PostEntity updateEntity(PostEntity postEntity, PostForm postForm) {
         postEntity.setTitle(postForm.getTitle());
         postEntity.setText(postForm.getText());
-        HashSet<PostEntity> parent = new HashSet<>();
-        postRepository.findById(postForm.getParentPostId()).ifPresent(parent::add);
-        postEntity.setParentPost(parent);
         return postEntity;
     }
 
