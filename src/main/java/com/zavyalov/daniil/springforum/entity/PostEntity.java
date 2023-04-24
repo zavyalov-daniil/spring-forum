@@ -1,7 +1,5 @@
 package com.zavyalov.daniil.springforum.entity;
 
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,7 +26,7 @@ public class PostEntity {
     private String text;
 
     @Property("creationTime")
-    @Temporal(TemporalType.TIMESTAMP)
+    //@Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     Date creationTime;
 
