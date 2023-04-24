@@ -47,4 +47,8 @@ public class ForumUserDetails implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    public Integer getUserId(){
+        return user.getId();
+    }
 }

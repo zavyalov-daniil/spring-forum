@@ -13,6 +13,10 @@ public class UserController {
 
     ForumUserDetailsService userDetailsService;
 
+    public UserController(ForumUserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
+
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/new")
     public UserForm getUserForm() {
@@ -21,7 +25,7 @@ public class UserController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping()
-    public UserView createUser(UserForm user) {
+    public UserView createUser(@RequestBody UserForm user) {
         return userDetailsService.createUser(user);
     }
 

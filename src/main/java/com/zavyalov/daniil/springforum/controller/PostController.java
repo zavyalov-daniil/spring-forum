@@ -39,7 +39,7 @@ public class PostController {
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public PostView createPost(@RequestBody PostForm postForm) {
-        return service.save(postForm);
+        return service.savePost(postForm);
     }
 
     @ResponseStatus(HttpStatus.OK)

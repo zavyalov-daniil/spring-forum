@@ -1,7 +1,5 @@
 package com.zavyalov.daniil.springforum.entity;
 
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,17 +26,17 @@ public class PostEntity {
     private String text;
 
     @Property("creationTime")
-    @Temporal(TemporalType.TIMESTAMP)
+    //@Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     Date creationTime;
 
     @Setter
     @Relationship(type = "HAS_COMMENT", direction = Relationship.Direction.OUTGOING)
-    private Set<PostEntity> parentPost;
+    private Set<PostEntity> comments;
 
-    public PostEntity(String text, String title, Set<PostEntity> parentPost) {
+    public PostEntity(String text, String title, Set<PostEntity> comments) {
         this.title = title;
         this.text = text;
-        this.parentPost = parentPost;
+        this.comments = comments;
     }
 }

@@ -17,7 +17,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class UserGraphEntity {
     @Id
-    private Integer id;
+    private Integer userId;
 
     @Relationship(type = "LEFT_A_POST", direction = Relationship.Direction.OUTGOING)
     private Set<PostEntity> posts;

@@ -14,4 +14,5 @@ public class PostForm {
     private String title;
     private String text;
     private Long parentPostId;
+    private Integer userId;
 }
