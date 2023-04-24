@@ -1,6 +1,5 @@
 package com.zavyalov.daniil.springforum.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -16,7 +15,7 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
-    public WebSecurityConfig(DataSource dataSource, UserDetailsService userDetailsService){
+    public WebSecurityConfig(UserDetailsService userDetailsService){
         this.userDetailsService=userDetailsService;
     }
 
@@ -55,6 +54,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/posts")
                 .permitAll()
                 .and()
-                .logout().logoutSuccessUrl("/posts").permitAll();
+                .logout().logoutSuccessUrl("/posts").permitAll()
+                .and()
+                .csrf().disable();
     }
 }

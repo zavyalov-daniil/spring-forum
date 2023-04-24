@@ -39,7 +39,7 @@ public class PostController {
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public PostView createPost(@RequestBody PostForm postForm) {
-        return service.save(postForm);
+        return service.savePost(postForm);
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -58,5 +58,11 @@ public class PostController {
     @ResponseStatus(HttpStatus.OK)
     public void deleteAllPosts() {
         service.deleteAll();
+    }
+
+    @PostMapping("/test")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void test(@RequestBody PostForm postForm) {
+        service.test(postForm);
     }
 }

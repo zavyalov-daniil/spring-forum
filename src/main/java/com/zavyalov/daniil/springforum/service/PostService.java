@@ -15,10 +15,12 @@ import java.util.Optional;
 public class PostService {
     PostRepository postRepository;
     PostManager postManager;
+    CurrentUserFacade currentUserFacade;
 
-    PostService(PostRepository postRepository, PostManager postManager) {
+    PostService(PostRepository postRepository, PostManager postManager, CurrentUserFacade currentUserFacade) {
         this.postRepository = postRepository;
         this.postManager = postManager;
+        this.currentUserFacade = currentUserFacade;
     }
 
     public PostForm getPostForm() {
@@ -41,9 +43,20 @@ public class PostService {
         return res.map(entity -> postManager.entityToView(entity));
     }
 
-    public PostView save(PostForm postForm) {
+    public PostView savePost(PostForm postForm) {
         PostEntity entity = postManager.formToNewEntity(postForm);
-        return postManager.entityToView(postRepository.save(entity));
+        PostEntity savedEntity = postRepository.save(entity);
+        postRepository.mergeUserAndPost(currentUserFacade.getCurrentUser().getUserId(), savedEntity.getId());
+
+        return postManager.entityToView(savedEntity);
+    }
+
+    public PostView saveComment(PostForm postForm) {
+        PostEntity entity = postManager.formToNewEntity(postForm);
+        PostEntity savedEntity = postRepository.save(entity);
+        postRepository.mergeUserAndPost(currentUserFacade.getCurrentUser().getUserId(), savedEntity.getId());
+
+        return postManager.entityToView(savedEntity);
     }
 
     public Optional<PostView> updatePost(Long id, PostForm form) {
@@ -67,5 +80,10 @@ public class PostService {
 
     public void deleteAll() {
         postRepository.deleteAll();
+    }
+
+    public void test(PostForm postForm) {
+        PostEntity entity = postManager.formToNewEntity(postForm);
+        /*return postManager.entityToView(*/postRepository.mergeUserAndPost(6, 2L);//);
     }
 }
