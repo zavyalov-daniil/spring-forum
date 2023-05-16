@@ -34,7 +34,7 @@ public interface PostRepository extends Neo4jRepository<PostEntity, Long> {
     void mergeUserAndComment(@Param("userId") Integer userId, @Param("postId") Long postId);
 
     @Query("MATCH(c:Post) " +
-            "where ID(c) = commentId " +
+            "where ID(c) = $commentId " +
             "with(c) " +
             "match(p:Post) " +
             "where ID(p) = $postId " +
